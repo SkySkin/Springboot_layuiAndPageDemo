@@ -26,14 +26,15 @@ public class TestController {
     private StudentMapper studentMapper;
 
     @RequestMapping("/")
-    public String index(){
+    public String index() {
         return "index";
     }
 
     @ResponseBody
     @GetMapping("/selAll")
-    public PojoPageForLayui<?> selAll(@RequestParam(name = "page",defaultValue = "1")Integer page,
-                                @RequestParam(name = "size",defaultValue = "5")Integer size){
+    public PojoPageForLayui<?> selAll(@RequestParam(name = "page", defaultValue = "1") Integer page,
+                                      @RequestParam(name = "size", defaultValue = "5") Integer size) {
+        //使用PageHelper 分页插件，配合layui框架使用
         PageHelper.startPage(page, size);
         List<Student> students = studentMapper.selAll();
         PageInfo<Student> studentPageInfo = new PageInfo<>(students);
