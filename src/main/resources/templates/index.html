@@ -1,0 +1,46 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>table模块快速使用</title>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+</head>
+<body>
+
+<table id="demo" lay-filter="test"></table>
+
+<script src="layui/layui.js"></script>
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+        //第一个实例
+        table.render({
+            elem: '#demo'
+            ,height: 312
+            ,url: '/selAll' //数据接口
+            ,page: true //开启分页
+            ,limits:[5,10,20,30,40,50,60,70,80,90]
+            ,toolbar: 'default'//让工具栏左侧显示默认的内置模板
+            ,limit:5//每页显示5条，默认为10条
+            ,parseData: function(res) { //res 即为原始返回的数据
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.count, //解析数据长度
+                    "data": res.data //解析数据列表
+                }
+            }
+            ,cols: [[ //表头
+                {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+                ,{field: 'name', title: '用户名', width:120}
+                ,{field: 'age', title: '年龄', width:80, sort: true}
+                ,{field: 'gender', title: '性别', width:80}
+                ,{field: 'telephone', title: '手机', width: 200}
+                ,{field: 'email', title: '邮箱', width: 200, sort: true}
+            ]]
+        });
+
+    });
+</script>
+</body>
+</html>
