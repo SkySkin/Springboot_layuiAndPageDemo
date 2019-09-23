@@ -1,1 +1,1 @@
-# Springboot_layuiAndPageDemo
+# springboot项目，关于不用模板跳转HTML，和整合Layui分页表格，以及整合pagehelper分页插件的小demo
